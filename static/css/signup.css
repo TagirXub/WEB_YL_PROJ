@@ -1,0 +1,57 @@
+body {
+            background: url('../img/bg8.jpg');
+            background-size: cover;
+            color: #fff;
+            -webkit-background-clip: background;
+            animation: animate 20s infinite linear;
+        }
+        @keyframes animate{
+        from{
+            background-position: 0 0;
+        }
+        to {
+            background-position: 100% 100%;
+        }
+        }
+
+        .container {
+            padding-top: 80px;
+            max-width: 1300px;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0,0,25);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(255,255,255);
+            font-size: 1.51em;
+        }
+        .form-group label {
+            color: #f8f9fa;
+            font-weight: bold;
+
+        }
+        .form-control {
+            background-color: rgba(255,255,255,0.2);
+            border: 1px solid #6c757d;
+            color: #fff;
+            font-size: 1em;
+        }
+        .btn-light {
+            background-color: #ffffff;
+            border-color: #007bff;
+            font-size: 1.5em;
+            margin-top: 50px;
+        }
+        .btn-light:hover {
+            background-color: #50c878;
+            border-color: #050c878;
+
+        }
+        .bg-behind {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
