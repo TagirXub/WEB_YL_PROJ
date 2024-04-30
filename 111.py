@@ -45,8 +45,6 @@ def signup():
     return render_template('signup.html')
 
 
-
-
 @app.route('/load-picture')
 def load():
     return render_template('load-picture.html')

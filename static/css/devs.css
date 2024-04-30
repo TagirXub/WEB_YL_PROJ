@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One:wght@400;700&display=swap');
+
+h1{
+    font-family: "Montserrat", sans-serif;
+    background: url('../img/bg12.jpeg');
+    font-size: 6em;
+    font-weight: bold;
+    margin-top: 170px;
+    text-align: center;
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: animate 30s infinite linear;
+}
+@keyframes animate{
+        from{
+            background-position: 0 0;
+        }
+        to {
+            background-position: 100% 100%;
+        }
+}
+
+h2{
+    font-family: "Montserrat", sans-serif;
+    margin-top: 30px;
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+a{
+    font-family: "Montserrat", sans-serif;
+    font-size: 2em;
+    color: #fff;
+}
