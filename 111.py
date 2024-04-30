@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
-from flask_login import LoginManager
+from flask_login import LoginManager, login_user
 from data.users import User
 from forms.user import RegistrationForm, LoginForm
 from data.db_session import global_init, create_session
@@ -27,6 +27,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(name=form.name.data,surname=form.surname.data, email=form.email.data, hashed_password=form.password.data)
+        user.set_password(form.password.data)
         ses.add(user)
         ses.commit()
         flash('Вы успешно зарегистрировались!', 'success')
@@ -66,8 +67,9 @@ def login():
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.email == form.email.data).first()
+        print(user.check_password(form.password.data))
         if user and user.check_password(form.password.data):
-            user(user, remember=form.remember_me.data)
+            login_user(user, remember=form.remember_me.data)
             return redirect("/")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
