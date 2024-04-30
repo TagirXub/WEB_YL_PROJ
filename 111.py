@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, login_required, logout_user
 from data.users import User
 from forms.user import RegistrationForm, LoginForm
 from data.db_session import global_init, create_session
@@ -76,6 +76,11 @@ def login():
                                form=form)
     return render_template('login.html', title='Авторизация', form=form)
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect("/")
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
