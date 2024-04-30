@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1 style="text-align: center;">Вот ваш файл</h1>
+<div>
+  <div class="item active">
+    <img src={{path}} style="max-width:800;max-height:800px;display:block;margin-left:auto;margin-right:auto;" alt="{url_for('static',%20filename=path)}">
+    <div style="display: flex; justify-content: space-around;">
+      <button onclick="document.location='/'" class="btn btn-primary">На главную</button>
+      <form method="post" enctype="multipart/form-data">
+        <input class="btn btn-primary" type="submit" value="Чекнуть" style="display: block; margin-left: auto; margin-right: auto; margin-top: 10px; width: 100px;">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

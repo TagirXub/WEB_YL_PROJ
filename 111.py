@@ -5,15 +5,20 @@ from data.users import User
 from forms.user import RegistrationForm, LoginForm
 from data.db_session import global_init, create_session
 from data import db_session
-
+from flask import request
+from werkzeug.utils import secure_filename
+import uuid
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 global_init('photos.db')
 login_manager = LoginManager()
 login_manager.init_app(app)
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 @app.route('/index')
@@ -45,11 +50,36 @@ def signup():
     return render_template('signup.html')
 
 
-@app.route('/load-picture')
+@app.route('/load-picture', methods=['GET', 'POST'])
 def load():
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            flash('Не могу прочитать файл')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('Нет выбранного файла')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            uid = uuid.uuid4()
+            file.save(f"static/dataset/{uid}.jpg")
+            return redirect(url_for('check_file', name=f'{uid}.jpg'))
     return render_template('load-picture.html')
 
-
+@app.route('/check/<name>', methods=['GET', 'POST'])
+def check_file(name):
+    """
+    просто показываем фотку
+    можно добавить чтобы внизу писался класс
+    тип вот фотка ее класс ГРафика
+    и опиисание еще если успеете
+    """
+    path = f'/dataset/{name}'
+    if request.method == 'POST':
+        return redirect(url_for('download_file', name=path.split("/")[-1]))
+    else:
+        return render_template('check-picture.html', path=url_for('static', filename=path))
 @app.route('/tagir')
 def tagir():
     return render_template('tagir.html')
@@ -65,7 +95,6 @@ def login():
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.email == form.email.data).first()
-        print(user.check_password(form.password.data))
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             return redirect("/")
