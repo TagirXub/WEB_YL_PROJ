@@ -14,13 +14,14 @@
         <div class="container-fluid">
             {% if current_user.is_authenticated %}
             <a class="navbar-brand" href="index">Main</a>
+            <a class="navbar-brand" href="/logout">Log out</a>
             <a class="navbar-brand" href="load-picture">Load</a>
-            <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
+            <span class="navbar-text">{{ current_user.name + " " + current_user.surname}}</span>
             {% else %}
             <a class="navbar-brand" href="index">Main</a>
             <a class="navbar-brand" href="login">Log in</a>
             <a class="navbar-brand" href="signup">Sign up</a>
-            <a class="navbar-brand" href="load-picture">Load</a>
+
             <span class="navbar-text">
                 Account not log in
             </span>
@@ -65,7 +66,9 @@
         <div data-aos="zoom-out-up" class="site-description2">
             Загрузите картинку прямо сейчас и убедитесь сами в эффективности нашего сервиса.
         </div>
-        <a class="btn btn-light btn-lg" href="load-picture" role="button"> START </a>
+        {% if current_user.is_authenticated %}
+            <a class="btn btn-light btn-lg" href="load-picture" role="button"> START </a>
+        {% endif %}
     </div>
 
     {% endblock %}
