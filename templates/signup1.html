@@ -8,20 +8,12 @@
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <div class="form-group">
-                {{ form.first_name.label(class="font-weight-bold") }}
-                {{ form.first_name(size=32, class="form-control") }}
+                {{ form.name.label(class="font-weight-bold") }}
+                {{ form.name(size=32, class="form-control") }}
             </div>
             <div class="form-group">
-                {{ form.last_name.label(class="font-weight-bold") }}
-                {{ form.last_name(size=32, class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.middle_name.label(class="font-weight-bold") }}
-                {{ form.middle_name(size=32, class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.phone_number.label(class="font-weight-bold") }}
-                {{ form.phone_number(size=32, class="form-control") }}
+                {{ form.surname.label(class="font-weight-bold") }}
+                {{ form.surname(size=32, class="form-control") }}
             </div>
             <div class="form-group">
                 {{ form.email.label(class="font-weight-bold") }}
@@ -36,9 +28,8 @@
                 {{ form.confirm_password(size=32, class="form-control") }}
             </div>
             <div class="form-group">
-                {{ form.submit(class="btn btn-light btn-block") }}
+                {{ form.submit(class="btn2 btn-light btn-block") }}
             </div>
         </form>
     </div>
-
 {% endblock %}
