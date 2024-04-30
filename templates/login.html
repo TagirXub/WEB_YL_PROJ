@@ -1,4 +1,32 @@
 {% extends "index.html" %}
 
 {% block content %}
+    <link rel="stylesheet" type="text/css" href="static/css/login.css"/>
+    <div class="container">
+    <h1>Авторизация</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.email.label (class="font-weight-bold")}}<br>
+            {{ form.email(class="form-control", type="email") }}<br>
+            {% for error in form.email.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label (class="font-weight-bold")}}<br>
+            {{ form.password(size=32, class="form-control", type="password") }}<br>
+            {% for error in form.password.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{form.submit(class="btn2 btn-light btn-block")}}</p>
+        <div>{{ message }}</div>
+    </form>
+    </div>
 {% endblock %}

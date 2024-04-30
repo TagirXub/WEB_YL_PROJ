@@ -14,14 +14,17 @@ body {
         }
         }
 .container{
-    padding-top: 50px;
+    padding-top: 100px;
+    width: 500px;
 }
-
+h1{
+    font-weight: bold;
+}
 .btn2{
     border-radius: 20px;
     background: white;
     color: black;
-    margin-top: 50px;
+    margin-top: 40px;
     font-size: 1.5em;
     text-align: center;
 }
