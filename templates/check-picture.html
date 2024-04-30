@@ -1,14 +1,21 @@
 {% extends "index.html" %}
 
 {% block content %}
-<h1 style="text-align: center;">Вот ваш файл</h1>
-<div>
-  <div class="item active">
-    <img src={{path}} style="max-width:800;max-height:800px;display:block;margin-left:auto;margin-right:auto;" alt="{url_for('static',%20filename=path)}">
-    <div style="display: flex; justify-content: space-around;">
-      <button onclick="document.location='/'" class="btn btn-primary">На главную</button>
+<style>
+  body{
+    background: #000; font-family: "Montserrat", sans-serif;}
+</style>
+
+<div class="container">
+  <h1 style="margin-top: 80px; text-align: center; color: #fff;">Вот ваш файл</h1>
+ <div class="item active">
+    <div style="text-align: center;">
+      <img src="{{ path }}" style="max-width:800px; max-height:500px; display:block; margin-left:auto; margin-right:auto;" alt="{{ url_for('static', filename=path) }}">
+    </div>
+    <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+      <button onclick="document.location='/'" class="btn btn-light" style="font-size: 2em;">На главную</button>
       <form method="post" enctype="multipart/form-data">
-        <input class="btn btn-primary" type="submit" value="Чекнуть" style="display: block; margin-left: auto; margin-right: auto; margin-top: 10px; width: 100px;">
+        <input class="btn btn-light" type="submit" value="Чекнуть" style="font-size: 2em;">
       </form>
     </div>
   </div>
